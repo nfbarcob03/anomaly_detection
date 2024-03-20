@@ -1,8 +1,8 @@
 -----Crear esquema donde se guardaran las tablas de pricing----------
-CREATE SCHEMA IF NOT EXISTS pricing;
+--CREATE SCHEMA IF NOT EXISTS pricing;
 
 -----Crear tabla con el historio de pricing----------
-CREATE TABLE pricing.item_historical_pricing (
+CREATE TABLE item_historical_pricing (
     id SERIAL PRIMARY KEY,
     item_id VARCHAR(255),
     ord_closed_dt DATE,
@@ -10,16 +10,16 @@ CREATE TABLE pricing.item_historical_pricing (
 );
 
 
-COPY pricing.item_historical_pricing (ITEM_ID, ORD_CLOSED_DT, PRICE) FROM '/precios_historicos.csv' DELIMITER ',' CSV HEADER;
+COPY item_historical_pricing (ITEM_ID, ORD_CLOSED_DT, PRICE) FROM '/precios_historicos.csv' DELIMITER ',' CSV HEADER;
 
 CREATE ROLE appconexion WITH LOGIN PASSWORD '1234' CREATEDB;
 
 -- Otorga todos los permisos al usuario 'appconexion' sobre el esquema 'pricing'
-GRANT ALL PRIVILEGES ON SCHEMA pricing TO appconexion;
+GRANT ALL PRIVILEGES ON SCHEMA public TO appconexion;
 
 -- Otorga todos los permisos al usuario 'appconexion' sobre la tabla 'item_historical_pricing'
-GRANT ALL PRIVILEGES ON TABLE pricing.item_historical_pricing TO appconexion;
+GRANT ALL PRIVILEGES ON TABLE item_historical_pricing TO appconexion;
 
 -- Otorga permisos sobre la secuencia item_historical_pricing_id_seq
-GRANT SELECT, UPDATE ON SEQUENCE pricing.item_historical_pricing_id_seq TO appconexion;
-GRANT USAGE ON SEQUENCE pricing.item_historical_pricing_id_seq TO appconexion;
+GRANT SELECT, UPDATE ON SEQUENCE item_historical_pricing_id_seq TO appconexion;
+GRANT USAGE ON SEQUENCE item_historical_pricing_id_seq TO appconexion;

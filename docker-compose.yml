@@ -6,13 +6,24 @@ services:
     ports:
       - "5050:5432"
   
-  web:
+  web_mvc:
     build:
-      context: ms_anomaly_detection_pricing
+      context: ms_anom_detec_pric
       dockerfile: Dockerfile
     ports:
       - "8000:8000"  # Mapeo de puertos (puerto_host:puerto_contenedor)
     volumes:
-      - ./ms_anomaly_detection_pricing:/app  # Monta el directorio de la aplicación Django en el contenedor
+      - ./ms_anom_detec_pric:/app  # Monta el directorio de la aplicación Django en el contenedor
+    depends_on:
+      - db  # Asegura que el servicio de base de datos esté disponible antes de iniciar la aplicación
+  
+  web_ca:
+    build:
+      context: ms_anom_detec_pric_CA
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000"  # Mapeo de puertos (puerto_host:puerto_contenedor)
+    volumes:
+      - ./ms_anom_detec_pric_CA:/app  # Monta el directorio de la aplicación Django en el contenedor
     depends_on:
       - db  # Asegura que el servicio de base de datos esté disponible antes de iniciar la aplicación
