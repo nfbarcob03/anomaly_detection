@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'pricingApp',
 ]
 
+TESTS = ['pricingApp.driven_adapter.orm_driver.tests']
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,7 +83,8 @@ DATABASES = {
  'NAME': 'pricing',
  'USER': 'appconexion',
  'PASSWORD': '1234',
- 'HOST': 'db',
+ 'HOST': 'localhost',
+ 'PORT': '5050'
  }
 }
 

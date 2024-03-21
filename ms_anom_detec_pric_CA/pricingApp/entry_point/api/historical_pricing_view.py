@@ -2,7 +2,6 @@
 from rest_framework.views import APIView
 from rest_framework import status
 from pricingApp.driven_adapter.orm_driver import ItemHistoricalRepositoryAdapter
-from .historical_pricing_item_serializer import HistoricalPricingSerializer
 from pricingApp.domain.usecase import ItemHistoricalPricingUseCase
 from rest_framework.response import Response
 
@@ -13,4 +12,5 @@ class HistoricalPricingListView(APIView):
         repo = ItemHistoricalRepositoryAdapter()
         use_case = ItemHistoricalPricingUseCase(repo)
         listEntity = use_case.consultarPreciosByIdItem(idItem=idItem)
-        return Response([repr(item) for item in listEntity], status=status.HTTP_200_OK)
+        dataResponse = [item.model_dump() for item in listEntity]
+        return Response(dataResponse, status=status.HTTP_200_OK)

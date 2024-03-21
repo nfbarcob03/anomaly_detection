@@ -1,1 +1,2 @@
 from .item_historical_pricing_usecase import ItemHistoricalPricingUseCase
+from .anomaly_detection_model_usecase import AnomalyDetectionModelUseCase

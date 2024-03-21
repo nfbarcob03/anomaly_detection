@@ -3,6 +3,7 @@ from pricingApp.domain.model import AbstractItemHistoricalPricingRepository
 from pricingApp.domain.model import ItemHistoricalPricing
 from .model.historical_pricing_data import ItemHistoricalPricingData
 
+
 class ItemHistoricalRepositoryAdapter(AbstractItemHistoricalPricingRepository):
 
     def insert(self, itemId, ordCloseDt, price) -> ItemHistoricalPricing:

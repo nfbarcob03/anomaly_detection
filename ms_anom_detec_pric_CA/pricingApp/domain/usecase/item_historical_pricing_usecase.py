@@ -2,7 +2,7 @@ from ast import List
 from csv import DictReader
 from pricingApp.domain.model import ItemHistoricalPricing
 from pricingApp.domain.model import AbstractItemHistoricalPricingRepository
-from .abstract_item_historical_pricing_usecase import AbstractItemHistoricalPricingUseCase
+from .gateway.abstract_item_historical_pricing_usecase import AbstractItemHistoricalPricingUseCase
 
 class ItemHistoricalPricingUseCase(AbstractItemHistoricalPricingUseCase):
     def __init__(self, itemHistoricalPricingRepository:AbstractItemHistoricalPricingRepository):

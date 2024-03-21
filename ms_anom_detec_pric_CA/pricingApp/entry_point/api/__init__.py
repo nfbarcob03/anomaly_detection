@@ -1,4 +1,3 @@
 from .carga_historico_view import CargarCSV
 from .historical_pricing_view import HistoricalPricingListView
-from .historical_pricing_item_serializer import HistoricalPricingSerializer
 from .anomaly_detection_view import DetectAnomaly
