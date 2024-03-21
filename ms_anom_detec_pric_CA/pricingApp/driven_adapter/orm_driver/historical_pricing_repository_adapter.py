@@ -11,7 +11,7 @@ class ItemHistoricalRepositoryAdapter(AbstractItemHistoricalPricingRepository):
         return ItemHistoricalPricing(**itemHistorical.__dict__)
 
     def getByItemId(self, itemId) -> Optional[Sequence[ItemHistoricalPricing]]:
-        listData = ItemHistoricalPricingData.objects.filter(item_id=itemId)
+        listData = ItemHistoricalPricingData.objects.filter(item_id=itemId).order_by('ord_closed_dt')
         return  [
             ItemHistoricalPricing(
                 item_id=item.item_id,

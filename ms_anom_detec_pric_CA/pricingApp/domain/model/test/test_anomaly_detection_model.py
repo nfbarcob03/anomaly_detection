@@ -5,10 +5,10 @@ from ..anomaly_detection_model import AnomalyDetectionModelOutput
 
 def test_customer_create():
     anomalyDetectionModelOutput = AnomalyDetectionModelOutput(
-        item_id = 'item_id'
-        price = 10.10
-        anomaly = True
-        metadata = {}
+        item_id = 'item_id',
+        price = 10.10,
+        anomaly = True,
+        metadata = {},
         status_code = 200
     )
 

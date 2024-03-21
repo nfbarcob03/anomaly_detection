@@ -12,5 +12,5 @@ class HistoricalPricingListView(generics.ListAPIView):
         # Obtenemos el parámetro item_id de la URL
         item_id = self.kwargs['item_id']
         # Filtramos los registros que tengan el mismo item_id
-        queryset = ItemHistoricalPricing.objects.filter(item_id=item_id)
+        queryset = ItemHistoricalPricing.objects.filter(item_id=item_id).order_by('ord_closed_dt')
         return queryset

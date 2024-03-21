@@ -1,5 +1,5 @@
 from django.test import TestCase
-from ..model.historical_pricing_data import ItemHistoricalPricingData# Importa desde el mismo paquete
+from pricingApp.driven_adapter.orm_driver import ItemHistoricalPricingData# Importa desde el mismo paquete
 from datetime import date
 
 class ItemHistoricalPricingTestCase(TestCase):
