@@ -73,7 +73,7 @@ OJO hay 400 registros por que son 200 de la prueba de MVC y 200 de la prueba de 
 
 ## Arquitectura propuesta nube
 Como se mostro, esta implementacion aun esta en un ambiente local. Aqui se presenta un draft de la propuesta de la arquitectura desplegada en AWS
-![alt text](<arquitectura_propuesta_nube (2).jpg>)
+![alt text](<arquitectura_propuesta_nube (1) (1).jpg>)
 
 En esta arquitectura se propone:
 - Tener una herramienta para la gestion del ciclo de vida del software (Devops) (Azure, devops, Github pipelines, Jenkins etc) que entregue al ECR (Elastic Container Register) de AWS las imagenes de lo contenedores y las despliegue en pods del EKS con una estrategia de replicación y pruebas continuas liveness, readiness y startup a los diferentes microservicios y sus replicas.
@@ -83,3 +83,4 @@ En esta arquitectura se propone:
 - Tener las credenciales de acceso a las bases de datos en secretos del secret manager encriptados con KMS a los cuales pueda acceder los pods del EKS por medio de politicas y roles instaurados en el IAM
 - Tener un balanceador de cargas de frente al EKS para que gestione las peticiones y como enrutarlas a las diferentes EC2 que soportan la infrastructura del Elastic Kubernetes Service
 - Que las peticiones que van hacia los microservicios pasen por un servicio de WAF antes de llegar al balanceador de cargas para impedir ataques como inyeccion de codigo, DoDs, XSS entre otros
+- Uso de herramientas como Grafana o Cloudwatch para realizar el monitoreo y observabilidad de los servicios
