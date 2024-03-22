@@ -33,6 +33,11 @@ Para poner a correr la arquitectura en local solo basta con:
 cabe aclarar que este proceso puede tardar hasta 20 minutos (dependiendo de la velocidad del host) por las librerias usadas (scikitlearn en especifico es muy pesada)
 ![alt text](image-2.png)
 
+posibles errores: 
+
+`docker endpoint for "default" not found.`
+Solucion: https://stackoverflow.com/questions/74804296/docker-endpoint-for-default-not-found
+
 Si desea correr alguno de los microservicios fuera de docker lo puede hacer realizando las siguientes acciones parados en la raiz pero del microservicio (es decir, dentro de la carpeta del ms a correr):
 1. generar el entorno virtual con el comando `python -m venv pricing_env`
 2. instalar las dependencias con el comando `pip install -r requirements.txt`
