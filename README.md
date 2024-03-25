@@ -103,9 +103,7 @@ Por el momento se codificaron pruebas automatizadas solo al proyecto ms_anom_det
 ### Pruebas unitarias:
 Se entrega el proyecto con un porcentaje de cobertura superior al 90% para todos los scripts que comforman la logica de negocio de la aplicacion:
 
-![alt text](image-14.png)
-
-Los scripts de pruebas pueden ser encontrados en la ruta: `ms_anom_detec_pric\tests'.
+Los scripts de pruebas pueden ser encontrados en la ruta: `ms_anom_detec_pric\tests`.
 OJO: se recomienda no eliminar el archivo `ms_anom_detec_pric\tests\url\data.csv` ya que es insumo para las pruebas a los endpoints de carga de csv historico y deteccion de anomalias.
 
 #### correr pruebas en el host local directamente:
@@ -118,6 +116,8 @@ OJO: alli hay una configuracion comentada donde el host escucha por el puerto 50
 
 4. Para obtener la cobertura en reporte por consola se puede correr el comando `coverage report` y para generar el reporte en html se puede correr el comando `coverage html` y encontrara el reporte en
 `ms_anom_detect_pric\htmlcov\index.html` OJO que el reporte necesita todo lo que se genera en la carpeta htmlcov y cuando se correr el comando todo se regenera, no es necesario eliminarlo. En el repositorio en la misma ruta puede encontrar el ultimo reporte generado por el desarrollador al momento de subir sus cambios.
+
+![alt text](image-14.png)
 
 #### Correr las pruebas en el contenedor
 1. Ingresar a una consola del contenedor, esto se puede hacer por docker descktop, identificando el contenedor y yendo a su pestaña de terminal 
