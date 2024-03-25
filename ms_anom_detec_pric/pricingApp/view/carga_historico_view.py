@@ -19,4 +19,6 @@ class CargarCSV(APIView):
                                                      price=fila['PRICE'])  
             return Response({'mensaje': 'Datos insertados correctamente'}, status=status.HTTP_201_CREATED)
         except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            print(str(e))
+            return Response({'error': 'Error procesando el archivo .csv, ver los logs para mas informacion'}, 
+                            status=status.HTTP_500_INTERNAL_SERVER_ERROR)

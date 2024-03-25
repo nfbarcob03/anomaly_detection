@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,6 +77,17 @@ WSGI_APPLICATION = 'ms_anomaly_detection_pricing.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
+##Configuracion BD en local (por ejemplo para hacer pruebas, toca crear el host)
+#  'default': {
+#  'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#  'NAME': 'pricing',
+#  'USER': 'appconexion',
+#  'PASSWORD': '1234',
+#  'HOST': 'localhost',
+#  'PORT':'5050'
+#  }
+
+##Configuracion BD en contenedor Doker corriendo
  'default': {
  'ENGINE': 'django.db.backends.postgresql_psycopg2',
  'NAME': 'pricing',
@@ -126,3 +138,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Create global variable that will tell if our application is under test
+UNDER_TEST = (len(sys.argv) > 1 and sys.argv[1] == 'test')

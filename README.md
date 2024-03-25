@@ -96,6 +96,42 @@ Para esta prueba se procedio primero truncando la base de datos (no hya lio, pue
 
 OJO hay 400 registros por que son 200 de la prueba de MVC y 200 de la prueba de CA
 
+## Pruebas automatizadas
+
+Por el momento se codificaron pruebas automatizadas solo al proyecto ms_anom_detec_pric ya que el proyecto  ms_anom_detec_pric_CA al ser arquitectrurea limpia es mucho mas robusto y son muchos mas los scripts a probar y se dejara para futuras entregas.
+
+### Pruebas unitarias:
+Se entrega el proyecto con un porcentaje de cobertura superior al 90% para todos los scripts que comforman la logica de negocio de la aplicacion:
+
+![alt text](image-14.png)
+
+Los scripts de pruebas pueden ser encontrados en la ruta: `ms_anom_detec_pric\tests'.
+OJO: se recomienda no eliminar el archivo `ms_anom_detec_pric\tests\url\data.csv` ya que es insumo para las pruebas a los endpoints de carga de csv historico y deteccion de anomalias.
+
+#### correr pruebas en el host local directamente:
+1. Crear el host de base de datos e ingresar la configuracion en el archivo `ms_anom_detect_pric\ms_anomaly_detection_pricing\settings.py`
+OJO: alli hay una configuracion comentada donde el host escucha por el puerto 5050 que es la configuracion de la bd del contenedor consumida desde afuera de la red de Docker, es decir, desde el entorno local. Puede ser utilizada si tiene arriba la arquitectura del docker-compose
+
+2. tener instalada la libreria coverage (esta se instala automaticamente con la instalacion del archivo requirements.txt) si se quiere tener cobertura de las pruebas
+
+3. Parado en la raiz del proyecto, donde esta el archivo manage.py, correr `coverage run manage.py test` para correr las pruebas con cobertura o  `python manage.py test` para solo correr las pruebas. Podra ver si falla algun test o si todos corren y cuantos test se corrieron
+
+4. Para obtener la cobertura en reporte por consola se puede correr el comando `coverage report` y para generar el reporte en html se puede correr el comando `coverage html` y encontrara el reporte en
+`ms_anom_detect_pric\htmlcov\index.html` OJO que el reporte necesita todo lo que se genera en la carpeta htmlcov y cuando se correr el comando todo se regenera, no es necesario eliminarlo. En el repositorio en la misma ruta puede encontrar el ultimo reporte generado por el desarrollador al momento de subir sus cambios.
+
+#### Correr las pruebas en el contenedor
+1. Ingresar a una consola del contenedor, esto se puede hacer por docker descktop, identificando el contenedor y yendo a su pestaña de terminal 
+![alt text](image-15.png)
+![alt text](image-16.png)
+o por medio de una linea de comandos cmd con el comando el contenedor `docker exec -ti project_ad-web_mvc-1 sh`
+
+2. ya conectados al contenedor correr los comandos:
+-  `python manage.py test` para correr los test sin covertura, simplemente ver que test correr bien y cuales no
+- `coverage run manage.pc test` para correr los test con covertura
+- `coverage report` para ver el reporte de cobertura de las pruebas
+![alt text](image-17.png)
+![alt text](image-18.png)
+
 ## Arquitectura propuesta nube
 Como se mostro, esta implementacion aun esta en un ambiente local. Aqui se presenta un draft de la propuesta de la arquitectura desplegada en AWS
 ![alt text](<arquitectura_propuesta_nube (1) (1).jpg>)
