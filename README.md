@@ -138,7 +138,7 @@ o por medio de una linea de comandos cmd con el comando el contenedor `docker ex
 
 ### Pruebas de integracion
 
-Las pruebas de integración se hacen consumiendo directamente los servicio expuesto como si se hiciera por postman pero de forma automatica. Este es un proyecto aparte de los microservicios y por tanto tiene sus propias librerias que deberian ser gestionandas en un ambiente virtual propio del proyecto como se explicara a continuacion. Las librerias utilizadas para realizar las pruebas son: [APIRequestContext-playwright](https://playwright.dev/docs/api/class-apirequestcontext), [pytest](https://docs.pytest.org/en/8.0.x/).
+Las pruebas de integración se hacen consumiendo directamente los servicio expuesto como si se hiciera por postman pero de forma automatica. Este es un proyecto aparte de los microservicios y por tanto tiene sus propias librerias que deberian ser gestionandas en un ambiente virtual propio del proyecto como se explicara a continuacion. Las librerias utilizadas para realizar las pruebas son: [APIRequestContext-playwright](https://playwright.dev/docs/api/class-apirequestcontext), [pytest](https://docs.pytest.org/en/8.0.x/). [Documentacion apoyo pruebas](https://earthly.dev/blog/playwright-python-api-testing/) 
 
 La carpeta integrationTest esta conformado por los siguientes elementos:
 - api_ms_anomaly_detection.py: Tiene la definicion de los enpoints, como e consumen, que parametros necesita, que metodo utilizan. 
