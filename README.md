@@ -18,6 +18,8 @@ https://medium.com/bancolombia-tech/clean-architecture-aislando-los-detalles-4f9
 
 - docker-compose: tiene la receta en formato yml para desplegar los contenedores con la base de datos, los microservicios y conectarlos por medio de una red virtual de docker.
 
+-integrationTest: Contiene el desarrollo para realizar las pruebas automatizadas de integracion que se encargan de probar de forma integral lo servicios, consumiendolos por un cliente HTTP para realizar los rquest al servicio y validando la respuesta segun el caso de prueba. En esta caperta encontrara: los archivos apo_ms_anomaly_deteaction.py que tiene la configuracion de los enpoints de las apis expuestas y test_integration_ms_ad_mvc.py que tiene las pruebas como tal a los servicios expuestos por ms_anom_detec_pric. Por ultimo esta el archivo data.csv el cual es necesario para la prueba del enpoint de carga historico y pytest.ini que tiene la configuracion para pytest
+
 ## Como poner a funcionar la arquitectura
 Arquitectura en local
 ![alt text](arquitecturalocal.jpg)
@@ -101,10 +103,12 @@ OJO hay 400 registros por que son 200 de la prueba de MVC y 200 de la prueba de 
 Por el momento se codificaron pruebas automatizadas solo al proyecto ms_anom_detec_pric ya que el proyecto  ms_anom_detec_pric_CA al ser arquitectrurea limpia es mucho mas robusto y son muchos mas los scripts a probar y se dejara para futuras entregas.
 
 ### Pruebas unitarias:
-Se entrega el proyecto con un porcentaje de cobertura superior al 90% para todos los scripts que comforman la logica de negocio de la aplicacion:
+Se entrega el proyecto con un porcentaje de cobertura superior al 90% para todos los scripts que comforman la logica de negocio de la aplicacion.
 
 Los scripts de pruebas pueden ser encontrados en la ruta: `ms_anom_detec_pric\tests`.
 OJO: se recomienda no eliminar el archivo `ms_anom_detec_pric\tests\url\data.csv` ya que es insumo para las pruebas a los endpoints de carga de csv historico y deteccion de anomalias.
+
+Algunas de las librerias usadas fueron: [TestCase](https://docs.djangoproject.com/en/5.0/topics/testing/tools/#django.test.TestCase), [reverse](https://docs.djangoproject.com/en/5.0/ref/urlresolvers/), [APITestCase, APIClient](https://www.django-rest-framework.org/api-guide/testing/), [MagicMock](https://docs.python.org/3/library/unittest.mock.html). 
 
 #### correr pruebas en el host local directamente:
 1. Crear el host de base de datos e ingresar la configuracion en el archivo `ms_anom_detect_pric\ms_anomaly_detection_pricing\settings.py`
@@ -131,6 +135,27 @@ o por medio de una linea de comandos cmd con el comando el contenedor `docker ex
 - `coverage report` para ver el reporte de cobertura de las pruebas
 ![alt text](image-17.png)
 ![alt text](image-18.png)
+
+### Pruebas de integracion
+
+Las pruebas de integración se hacen consumiendo directamente los servicio expuesto como si se hiciera por postman pero de forma automatica. Este es un proyecto aparte de los microservicios y por tanto tiene sus propias librerias que deberian ser gestionandas en un ambiente virtual propio del proyecto como se explicara a continuacion. Las librerias utilizadas para realizar las pruebas son: [APIRequestContext-playwright](https://playwright.dev/docs/api/class-apirequestcontext), [pytest](https://docs.pytest.org/en/8.0.x/).
+
+La carpeta integrationTest esta conformado por los siguientes elementos:
+- api_ms_anomaly_detection.py: Tiene la definicion de los enpoints, como e consumen, que parametros necesita, que metodo utilizan. 
+- test_integration_ms_ad_mvc.py: Tiene las pruebas a correr utilizando los enpoints de api_ms_anomaly_detection.py. Esto incluye los inputs enviados a los enpoints y las validaciones sobre las respuestas obtenidas en las peticiones
+- data.csv: archivo csv necesario para la prueba de carga de archivo historico
+- pytest.ini: Configuraicon de pytest 
+- requirements.txt: archivo de instalacion de dependencias.
+
+
+Para correr las pruebas se hace directamente desde el local y se procede de la siguiente forma:
+
+1. Instalar el entorno virtual, para eso hacemos uso del siguiente comando: `python -m venv <nombre_enviroment>`
+2. Activar el entorno virtual, parados en la raiz del proyecto de `integrationTest` correr `<nombre_enviroment>/Scripts/activate`
+3. Instalar dependencias, con el entorno virtual arriba correr el comando `pip install -r requirements.txt`, teniendo encuenta tener pip actualizado (para actualizar pip correr `python.exe -m pip install --upgrade pip`)
+4. Una vez se tenga el entorno con las librerias necesiarias, correr el comando `pytest` dentro del proyecto de `integrationTest`
+![alt text](image-19.png)
+
 
 ## Arquitectura propuesta nube
 Como se mostro, esta implementacion aun esta en un ambiente local. Aqui se presenta un draft de la propuesta de la arquitectura desplegada en AWS

@@ -1,9 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
-from rest_framework.test import APITestCase
 from pricingApp.model import ItemHistoricalPricing
-from pricingApp.serializer import HistoricalPricingSerializer
 from rest_framework.test import APIClient
 
 class HistoricalPricingByItemIdEndpointTest(TestCase):
