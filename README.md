@@ -18,7 +18,7 @@ https://medium.com/bancolombia-tech/clean-architecture-aislando-los-detalles-4f9
 
 - docker-compose: tiene la receta en formato yml para desplegar los contenedores con la base de datos, los microservicios y conectarlos por medio de una red virtual de docker.
 
--integrationTest: Contiene el desarrollo para realizar las pruebas automatizadas de integracion que se encargan de probar de forma integral lo servicios, consumiendolos por un cliente HTTP para realizar los rquest al servicio y validando la respuesta segun el caso de prueba. En esta caperta encontrara: los archivos apo_ms_anomaly_deteaction.py que tiene la configuracion de los enpoints de las apis expuestas y test_integration_ms_ad_mvc.py que tiene las pruebas como tal a los servicios expuestos por ms_anom_detec_pric. Por ultimo esta el archivo data.csv el cual es necesario para la prueba del enpoint de carga historico y pytest.ini que tiene la configuracion para pytest
+- integrationTest: Contiene el desarrollo para realizar las pruebas automatizadas de integracion que se encargan de probar de forma integral lo servicios, consumiendolos por un cliente HTTP para realizar los rquest al servicio y validando la respuesta segun el caso de prueba. En esta caperta encontrara: los archivos apo_ms_anomaly_deteaction.py que tiene la configuracion de los enpoints de las apis expuestas y test_integration_ms_ad_mvc.py que tiene las pruebas como tal a los servicios expuestos por ms_anom_detec_pric. Por ultimo esta el archivo data.csv el cual es necesario para la prueba del enpoint de carga historico y pytest.ini que tiene la configuracion para pytest
 
 ## Como poner a funcionar la arquitectura
 Arquitectura en local
